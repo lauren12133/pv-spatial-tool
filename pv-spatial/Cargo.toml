@@ -14,11 +14,14 @@ rtrb = "0.3"
 serde_json = "1"
 
 [target.'cfg(windows)'.dependencies]
-windows = { version = "0.62", features = [
-  "Win32_Foundation",
-  "Win32_Media_Audio",
-  "Win32_System_Com",
-  "Win32_System_Threading",
+windows = { version = "0.62.2", features = [
+    "Win32_Foundation",
+    "Win32_Media_Audio",
+    "Win32_System_Com",
+    "Win32_System_Threading",
+    "Win32_Security",                  # 报错1：补全 CreateEventW
+    "Win32_Media_Audio_Endpoints",     # 报错3：补全 IMMDevice 相关
+    "Win32_System_Com_StructuredStorage",
 ] }
 
 [profile.release]
