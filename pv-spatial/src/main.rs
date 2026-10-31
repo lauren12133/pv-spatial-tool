@@ -22,6 +22,9 @@ mod audio {
   pub const SAMPLE_RATE: u32 = 48_000;
   /// 引擎 hop（10 ms）。处理块长可以更小，但取数据的单位是它。
   pub const HOP: usize = 480;
+  /// 7.1 环绕的 8 个声道
+  pub const CHANNELS: usize = 8;
+}
 }
 
 mod dsp;
