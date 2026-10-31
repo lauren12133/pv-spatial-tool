@@ -25,7 +25,6 @@ mod audio {
   /// 7.1 环绕的 8 个声道
   pub const CHANNELS: usize = 8;
 }
-}
 
 mod dsp;
 
