@@ -1,0 +1,33 @@
+name: Build pv-spatial Standalone
+
+on:
+  workflow_dispatch:           # 手动触发
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Rust (MSVC)
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
+
+      - name: Rust cache
+        uses: swatinem/rust-cache@v2
+        with:
+          # 指向 pv-spatial 目录进行缓存（假设你把 pv-spatial 传到了根目录）
+          workspaces: pv-spatial
+
+      - name: Build pv-spatial
+        # 进入 pv-spatial 目录进行编译
+        working-directory: pv-spatial
+        run: cargo build --release --target x86_64-pc-windows-msvc
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pv-spatial-exe
+          # 提取编译好的 exe 文件
+          path: pv-spatial/target/x86_64-pc-windows-msvc/release/pv-spatial.exe
