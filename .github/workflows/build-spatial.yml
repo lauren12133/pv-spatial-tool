@@ -17,11 +17,11 @@ jobs:
       - name: Rust cache
         uses: swatinem/rust-cache@v2
         with:
-          # 指向 pv-spatial 目录进行缓存（假设你把 pv-spatial 传到了根目录）
+          # 指向 pv-spatial 目录缓存，因为目标在这里
           workspaces: pv-spatial
 
       - name: Build pv-spatial
-        # 进入 pv-spatial 目录进行编译
+        # 进入 pv-spatial 目录编译
         working-directory: pv-spatial
         run: cargo build --release --target x86_64-pc-windows-msvc
 
@@ -29,5 +29,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: pv-spatial-exe
-          # 提取编译好的 exe 文件
+          # 提取编译好的 exe
           path: pv-spatial/target/x86_64-pc-windows-msvc/release/pv-spatial.exe
