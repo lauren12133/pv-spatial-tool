@@ -359,7 +359,7 @@ pub fn start_render(
             }
           }
         }
-        let _ = unsafe { render.ReleaseBuffer(avail) };
+        let _ = unsafe { render.ReleaseBuffer(avail, 0) };
       }
       unsafe {
         let _ = client.Stop();
